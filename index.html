@@ -26,8 +26,14 @@
           <div class="w-full h-full shadow-lg rounded-lg flex flex-col pb-2">
             <div class="p-2 pl-5 rounded-t-lg font-bold bg-red-700 text-white grow-0 flex">
               <span class="grow py-1">Base64</span>
+              <button data-tippy-content="Clear" class="text-white hover:bg-red-500 rounded px-2 py-1"
+                @click="clear">
+                Clear
+                <i class="fas fa-eraser"></i>
+              </button>
               <button data-tippy-content="Copy" class="text-white hover:bg-red-500 rounded px-2 py-1"
                 @click="copyEncoded">
+                Copy
                 <i class="fas fa-copy"></i>
               </button>
             </div>
@@ -38,8 +44,14 @@
           <div class="w-full h-full shadow-lg rounded-lg flex flex-col pb-2">
             <div class="p-2 pl-5 rounded-t-lg font-bold bg-green-800 text-white grow-0 flex">
               <span class="grow py-1">Decoded</span>
+              <button data-tippy-content="Clear" class="text-white hover:bg-green-600 rounded px-2 py-1"
+                @click="clear">
+                Clear
+                <i class="fas fa-eraser"></i>
+              </button>
               <button data-tippy-content="Copy" class="text-white hover:bg-green-600 rounded px-2 py-1"
                 @click="copyDecoded">
+                Copy
                 <i class="fas fa-copy"></i>
               </button>
             </div>
@@ -71,6 +83,11 @@
         })
       },
       methods: {
+        clear() {
+          this.decoded = ""
+          this.encoded = ""
+          this.encodedError = false
+        },
         decodeText(e) {
           try {
             this.decoded = atob(e.target.value)
